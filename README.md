@@ -1,17 +1,16 @@
+# Flask Project Template
 
-# Python Project Template
-
-A low dependency and really simple to start project template for Python Projects.
+A full feature Flask project template.
 
 See also 
-- [Flask-Project-Template](https://github.com/rochacbruno/flask-project-template/) for a full feature Flask project including database, API, admin interface, etc.
+- [Python-Project-Template](https://github.com/rochacbruno/python-project-template/) for a lean, low dependency Python app.
 - [FastAPI-Project-Template](https://github.com/rochacbruno/fastapi-project-template/) The base to start an openapi project featuring: SQLModel, Typer, FastAPI, JWT Token Auth, Interactive Shell, Management Commands.
 
 ### HOW TO USE THIS TEMPLATE
 
-> **DO NOT FORK** this is meant to be used from **[Use this template](https://github.com/rochacbruno/python-project-template/generate)** feature.
+> **DO NOT FORK** this is meant to be used from **[Use this template](https://github.com/rochacbruno/flask-project-template/generate)** feature.
 
-1. Click on **[Use this template](https://github.com/rochacbruno/python-project-template/generate)**
+1. Click on **[Use this template](https://github.com/rochacbruno/flask-project-template/generate)**
 3. Give a name to your project  
    (e.g. `my_awesome_project` recommendation is to use all lowercase and underscores separation for repo names.)
 3. Wait until the first run of CI finishes  
@@ -25,10 +24,7 @@ See also
 
 ### What is included on this template?
 
-- 🖼️ Templates for starting multiple application types:
-  * **Basic low dependency** Python program (default) [use this template](https://github.com/rochacbruno/python-project-template/generate)
-  * **Flask** with database, admin interface, restapi and authentication [use this template](https://github.com/rochacbruno/flask-project-template/generate).
-  **or Run `make init` after cloning to generate a new project based on a template.**
+- 🍾 A full feature Flask application with CLI, API, Admin interface, web UI and modular configuration.
 - 📦 A basic [setup.py](setup.py) file to provide installation, packaging and distribution for your project.  
   Template uses setuptools because it's the de-facto standard for Python packages, you can run `make switch-to-poetry` later if you want.
 - 🤖 A [Makefile](Makefile) with the most useful commands to install, test, lint, format and release your project.
@@ -44,42 +40,68 @@ See also
 - 🔄 Continuous integration using [Github Actions](.github/workflows/) with jobs to lint, test and release your project on Linux, Mac and Windows environments.
 
 > Curious about architectural decisions on this template? read [ABOUT_THIS_TEMPLATE.md](ABOUT_THIS_TEMPLATE.md)  
-> If you want to contribute to this template please open an [issue](https://github.com/rochacbruno/python-project-template/issues) or fork and send a PULL REQUEST.
-
-[❤️ Sponsor this project](https://github.com/sponsors/rochacbruno/)
+> If you want to contribute to this template please open an [issue](https://github.com/rochacbruno/flask-project-template/issues) or fork and send a PULL REQUEST.
 
 <!--  DELETE THE LINES ABOVE THIS AND WRITE YOUR PROJECT README BELOW -->
 
 ---
-# idtek
-
-[![codecov](https://codecov.io/gh/kleberporto/IdTek/branch/main/graph/badge.svg?token=IdTek_token_here)](https://codecov.io/gh/kleberporto/IdTek)
-[![CI](https://github.com/kleberporto/IdTek/actions/workflows/main.yml/badge.svg)](https://github.com/kleberporto/IdTek/actions/workflows/main.yml)
+# idtek Flask Application
 
 Awesome idtek created by kleberporto
 
-## Install it from PyPI
+## Installation
+
+From source:
+
+```bash
+git clone https://github.com/kleberporto/IdTek idtek
+cd idtek
+make install
+```
+
+From pypi:
 
 ```bash
 pip install idtek
 ```
 
-## Usage
+## Executing
 
-```py
-from idtek import BaseClass
-from idtek import base_function
+This application has a CLI interface that extends the Flask CLI.
 
-BaseClass().base_method()
-base_function()
-```
+Just run:
 
 ```bash
-$ python -m idtek
-#or
 $ idtek
 ```
 
-## Development
+or
 
-Read the [CONTRIBUTING.md](CONTRIBUTING.md) file.
+```bash
+$ python -m idtek
+```
+
+To see the help message and usage instructions.
+
+## First run
+
+```bash
+idtek create-db   # run once
+idtek populate-db  # run once (optional)
+idtek add-user -u admin -p 1234  # ads a user
+idtek run
+```
+
+Go to:
+
+- Website: http://localhost:5000
+- Admin: http://localhost:5000/admin/
+  - user: admin, senha: 1234
+- API GET:
+  - http://localhost:5000/api/v1/product/
+  - http://localhost:5000/api/v1/product/1
+  - http://localhost:5000/api/v1/product/2
+  - http://localhost:5000/api/v1/product/3
+
+
+> **Note**: You can also use `flask run` to run the application.
