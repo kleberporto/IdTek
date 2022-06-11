@@ -1,7 +1,14 @@
 import requests
 from bs4 import BeautifulSoup
 
+
 def retrieve_contributors_data():
+    """Retrieves the Contributors data from Poatek's Team web page that is
+    available at https://poatek.com/our-team
+
+    Raises:
+        SystemExit: When the Poatek's Team Page in unreacheble
+    """
 
     # Poatek team page
     URL = "https://poatek.com/our-team"
@@ -25,19 +32,20 @@ def retrieve_contributors_data():
             print(e)
             print("\nContributor name not found inside div")
             break
-        
+
         try:
             contributor_img_url = contributor.findAll("img")[0]['src']
         except IndexError as e:
-            print(f"\nCouldn't find {contributor_name}'s img file")
+            print(f"\n{e}\nCouldn't find {contributor_name}'s img file")
         except KeyError as e:
-            print(f"\nCouldn't find {contributor_name}'s image src url")
-            
-        
+            print(f"\n{e}\nCouldn't find {contributor_name}'s image src url")
+
         print(f"\n{contributor_name}: {contributor_img_url}")
-    
+
+
 def main():
     retrieve_contributors_data()
-    
+
+
 if __name__ == "__main__":
     main()
