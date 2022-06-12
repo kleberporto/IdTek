@@ -1,9 +1,11 @@
-from idtek.scrapper.scrapper import retrieve_contributors_data
 from idtek.livefeed.livefeed import open_camera
+from idtek.scrapper.scrapper import retrieve_contributors_data
+
 
 def live_feed():
     """Open camera for inference"""
     open_camera()
+
 
 def download_data():
     """Populate db with scrapped data"""
