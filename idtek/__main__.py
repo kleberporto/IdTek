@@ -1,8 +1,6 @@
 import click
 from flask.cli import FlaskGroup
 
-from idtek.scrapper.scrapper import retrieve_contributors_data
-
 from . import create_app_wsgi
 
 

@@ -14,4 +14,4 @@ click
 flask-restful
 beautifulsoup4==4.11.1
 opencv-python==4.6.0.66
-dvc==2.8.1
+dvc

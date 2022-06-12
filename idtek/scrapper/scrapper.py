@@ -13,9 +13,8 @@ def _get_contributor_name(contributor):
             contributor.find("h4", class_="").contents[0].strip()
         )
         contributor_name_nospace = "".join(contributor_name.split())
-    except IndexError as e:
-        print(e)
-        print("\nContributor name not found inside div")
+    except IndexError:
+        return None
 
     return contributor_name_nospace
 
@@ -23,10 +22,10 @@ def _get_contributor_name(contributor):
 def _get_contributor_img_url(contributor_name, contributor):
     try:
         contributor_img_url = contributor.findAll("img")[0]["src"]
-    except IndexError as e:
-        print(f"\n{e}\nCouldn't find {contributor_name}'s img file")
-    except KeyError as e:
-        print(f"\n{e}\nCouldn't find {contributor_name}'s image src url")
+    except IndexError:
+        return None
+    except KeyError:
+        return None
 
     return contributor_img_url
 
@@ -35,8 +34,8 @@ def _create_destiny_dir(contributor_name):
     image_destiny_path = f"{RAW_DATA_PATH}/{contributor_name}"
     try:
         os.mkdir(image_destiny_path)
-    except FileExistsError as e:
-        print(f"\n{e}\nPath already exists for: {contributor_name}")
+    except FileExistsError:
+        return None
     return image_destiny_path
 
 
@@ -68,18 +67,21 @@ def retrieve_contributors_data():
         contributor_img_url = _get_contributor_img_url(
             contributor_name, contributor_data
         )
+
+        if contributor_name is None or contributor_img_url is None:
+            continue
+
         image_destiny_path = _create_destiny_dir(contributor_name)
+        if image_destiny_path is None:
+            continue
 
         img_extension = contributor_img_url.split(".")[-1]
         img_data = requests.get(contributor_img_url).content
+
         with open(
             f"{image_destiny_path}/profile_pic.{img_extension}", "wb"
         ) as handler:
             handler.write(img_data)
-
-        print(
-            f"\n{contributor_name}: {contributor_img_url} | {image_destiny_path}"
-        )
 
 
 def main():
